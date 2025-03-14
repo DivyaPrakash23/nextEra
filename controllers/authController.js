@@ -42,10 +42,10 @@ module.exports.loginUser = async (req,res)=>{
           if(result) { 
             let token = generateToken(user)
             res.cookie("token", token)
-            res.render("admin.ejs", {error: ""})
+            res.render("shop.ejs", {error: ""})
           }
           else {
-            res.render("/login", {error: "Email or Password incorrect"})
+            res.render("/", {error: "Email or Password incorrect"})
           }
         });
     }

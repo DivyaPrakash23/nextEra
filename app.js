@@ -20,7 +20,7 @@ app.use(
     expressSession({
         resave: false,
         saveUninitialized: false,
-        secret: process.env.SESSION_SECRET,
+        secret: process.env.EXPRESS_SESSION_SECRET,
     })
 )
 app.use(flash())

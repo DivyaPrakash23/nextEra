@@ -27,10 +27,6 @@ app.use(flash())
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs')
 
-app.get("/", (req, res) => {
-    res.render("index", { error: "" }); // Provide an empty string if no error
-});
-
 
 app.use("/", indexRouter);
 app.use("/owners", ownersRouter);

@@ -35,6 +35,7 @@ module.exports.registerUser = async (req,res)=>{
 
 module.exports.loginUser = async (req,res)=>{
         let {email, password} = req.body
+
         let user = await userModel.findOne({email: email})
         if(!user) return res.send("Email or Password incorrect")
 
@@ -42,10 +43,14 @@ module.exports.loginUser = async (req,res)=>{
           if(result) { 
             let token = generateToken(user)
             res.cookie("token", token)
-            res.render("shop.ejs", {error: ""})
-          }
-          else {
-            res.render("/", {error: "Email or Password incorrect"})
+            res.redirect("/shop")
+          }else {
+            return res.redirect("/");
           }
         });
     }
+
+module.exports.logout = (req,res)=>{
+    res.clearCookie("token")
+    res.redirect("/")
+}
